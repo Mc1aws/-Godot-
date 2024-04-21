@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6wbu83wp0cka"]
+
+[ext_resource type="FontFile" uid="uid://brxb7ni0wbn4l" path="res://Assets/UI/monogram-extended.ttf" id="1_6vtau"]
+
+[node name="PauseMenu" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -2.0
+offset_right = -444.0
+offset_bottom = -265.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 931.0
+offset_top = 315.0
+offset_right = 1110.0
+offset_bottom = 474.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 20.0
+offset_right = 162.0
+offset_bottom = 136.0
+alignment = 1
+
+[node name="Продолжить" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_6vtau")
+theme_override_font_sizes/font_size = 30
+text = "Продолжить"
+
+[node name="Выйти" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_6vtau")
+theme_override_font_sizes/font_size = 30
+text = "Выйти"

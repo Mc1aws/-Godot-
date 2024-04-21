@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cstyyiu7umsxi"]
+
+[ext_resource type="Script" path="res://RigidBody2D.gd" id="1_bh7hr"]
+[ext_resource type="Texture2D" uid="uid://qnucajt62wv0" path="res://Assets/Objects/coin.png" id="2_8y7cj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nobkl"]
+radius = 4.0
+height = 10.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lrqg1"]
+radius = 1.0
+height = 16.0
+
+[node name="RigidBody2D" type="RigidBody2D"]
+script = ExtResource("1_bh7hr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8y7cj")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="TakeArea" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_nobkl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_lrqg1")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

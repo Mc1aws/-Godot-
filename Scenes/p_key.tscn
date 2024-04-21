@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://4jp2fl62acmg"]
+
+[ext_resource type="Texture2D" uid="uid://bivepmlslkuie" path="res://Assets/Objects/key.png" id="1_hekpv"]
+[ext_resource type="Script" path="res://Scenes/p_key.gd" id="1_ldayt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1gqb4"]
+size = Vector2(14, 9)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_354i5"]
+radius = 1.0
+height = 46.0
+
+[node name="RigidBody2D" type="RigidBody2D"]
+script = ExtResource("1_ldayt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_1gqb4")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hekpv")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, 18)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_354i5")

@@ -1,0 +1,130 @@
+[gd_scene load_steps=15 format=3 uid="uid://1tksoi471v5h"]
+
+[ext_resource type="Script" path="res://Scripts/Меню.gd" id="1_7wu07"]
+[ext_resource type="AudioStream" uid="uid://b7sdvcex0nxr8" path="res://Assets/SFX/Night Ambient 1.mp3" id="3_emd1b"]
+[ext_resource type="Texture2D" uid="uid://ch2052rtsjgvx" path="res://Assets/Map/SET1_bakcground_day1.png" id="3_ql8ha"]
+[ext_resource type="Texture2D" uid="uid://d3wd2e4dkf6ck" path="res://Assets/Map/SET1_bakcground_day2.png" id="4_bnqke"]
+[ext_resource type="Texture2D" uid="uid://cj6gkiymxcqqo" path="res://Assets/Map/SET1_bakcground_day3.png" id="5_jn866"]
+[ext_resource type="Script" path="res://Scenes/Camera2D.gd" id="6_rvbcb"]
+[ext_resource type="Texture2D" uid="uid://bu0ukm8j5met0" path="res://Assets/Hero/AnimationSheet_Character.png" id="8_mqcvx"]
+[ext_resource type="FontFile" uid="uid://brxb7ni0wbn4l" path="res://Assets/UI/monogram-extended.ttf" id="9_rrhp0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwre5"]
+atlas = ExtResource("8_mqcvx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3kc1"]
+atlas = ExtResource("8_mqcvx")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h05u1"]
+atlas = ExtResource("8_mqcvx")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gf0r7"]
+atlas = ExtResource("8_mqcvx")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_24laq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kwre5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3kc1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h05u1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gf0r7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gorru"]
+font = ExtResource("9_rrhp0")
+font_size = 180
+
+[node name="Меню" type="Node2D"]
+script = ExtResource("1_7wu07")
+
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_emd1b")
+volume_db = -5.0
+autoplay = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(2560, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(1292.5, 715)
+scale = Vector2(4.08281, 4.08696)
+texture = ExtResource("3_ql8ha")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.8, 0.8)
+motion_mirroring = Vector2(2560, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(1288.5, 713.5)
+scale = Vector2(4.10156, 4.02446)
+texture = ExtResource("4_bnqke")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(2560, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(1287, 713)
+scale = Vector2(4.10625, 4.09783)
+texture = ExtResource("5_jn866")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1281, 721)
+script = ExtResource("6_rvbcb")
+
+[node name="Играть" type="Button" parent="Camera2D"]
+offset_left = 311.0
+offset_top = -27.0
+offset_right = 1236.0
+offset_bottom = 314.0
+theme_override_fonts/font = ExtResource("9_rrhp0")
+theme_override_font_sizes/font_size = 200
+text = "ИГРАТЬ"
+
+[node name="Выйти" type="Button" parent="Camera2D"]
+offset_left = 306.0
+offset_top = 344.0
+offset_right = 1231.0
+offset_bottom = 685.0
+theme_override_fonts/font = ExtResource("9_rrhp0")
+theme_override_font_sizes/font_size = 200
+text = "ВЫЙТИ"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Camera2D"]
+position = Vector2(-854, 299)
+scale = Vector2(30, 30)
+sprite_frames = SubResource("SpriteFrames_24laq")
+frame_progress = 0.218602
+
+[node name="Label" type="Label" parent="Camera2D"]
+offset_left = -1239.0
+offset_top = -707.0
+offset_right = -15.0
+offset_bottom = -458.0
+text = "Моя первая игра..."
+label_settings = SubResource("LabelSettings_gorru")
+
+[connection signal="pressed" from="Camera2D/Играть" to="." method="_on_играть_pressed"]
+[connection signal="pressed" from="Camera2D/Выйти" to="." method="_on_выйти_pressed"]
